@@ -12,7 +12,7 @@ Este projeto é um backend desenvolvido em Django para gerenciamento de paciente
 ## 📦 Instalação
 
 ```bash
-git clone https://github.com/seu-usuario/sghss.git
+git clone https://github.com/thi-gr/SGHSS-Backend-Thiago-Garcia-Rodrigues.git
 cd sghss
 python -m venv venv
 source venv/bin/activate  # ou venv\Scripts\activate no Windows
