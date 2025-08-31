@@ -1,0 +1,207 @@
+{
+  "info": {
+    "name": "SGHSS - Testes de API",
+    "description": "Coleção de testes para o backend do sistema SGHSS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "🔐 Autenticação",
+      "item": [
+        {
+          "name": "Obter Token JWT",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"username\": \"thi_gr\", \"password\": \"27062009\" }"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/token/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "token"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"refresh\": \"{{refresh_token}}\" }"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/token/refresh/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "token", "refresh"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👤 Pacientes",
+      "item": [
+        {
+          "name": "Cadastrar Paciente",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"nome\": \"João Silva\", \"cpf\": \"12345678900\", \"data_nascimento\": \"1990-01-01\" }"
+            },
+            "url": {
+              "raw": "{{base_url}}/pacientes/",
+              "host": ["{{base_url}}"],
+              "path": ["pacientes"]
+            }
+          }
+        },
+        {
+          "name": "Listar Pacientes",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pacientes/",
+              "host": ["{{base_url}}"],
+              "path": ["pacientes"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Paciente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"nome\": \"João Silva Atualizado\" }"
+            },
+            "url": {
+              "raw": "{{base_url}}/pacientes/6/",
+              "host": ["{{base_url}}"],
+              "path": ["pacientes", "6"]
+            }
+          }
+        },
+        {
+          "name": "Deletar Paciente",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pacientes/6/",
+              "host": ["{{base_url}}"],
+              "path": ["pacientes", "6"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📅 Consultas",
+      "item": [
+        {
+          "name": "Criar Consulta",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"paciente\": 1, \"profissional\": 2, \"data\": \"2025-12-31T10:00:00\" }"
+            },
+            "url": {
+              "raw": "{{base_url}}/consultas/",
+              "host": ["{{base_url}}"],
+              "path": ["consultas"]
+            }
+          }
+        },
+        {
+          "name": "Listar Consultas",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/consultas/",
+              "host": ["{{base_url}}"],
+              "path": ["consultas"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "💊 Receitas",
+      "item": [
+        {
+          "name": "Criar Receita",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"consulta_id\": 1, \"descricao\": \"Receita gerada no teste Postman\", \"consulta\": \"1\" }"
+            },
+            "url": {
+              "raw": "{{base_url}}/receitas/",
+              "host": ["{{base_url}}"],
+              "path": ["receitas"]
+            }
+          }
+        },
+        {
+          "name": "Listar Receitas",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/receitas/",
+              "host": ["{{base_url}}"],
+              "path": ["receitas"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
